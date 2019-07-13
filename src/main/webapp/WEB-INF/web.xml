@@ -19,4 +19,18 @@
     <url-pattern>/logout</url-pattern>
     <url-pattern>/welcome.jsp</url-pattern>
   </filter-mapping>
+  <display-name>mobilestore</display-name>
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+
+  <servlet>
+    <servlet-name>Product</servlet-name>
+    <servlet-class>edu.mum.wap.controller.ProductListController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Product</servlet-name>
+    <url-pattern>/product</url-pattern>
+  </servlet-mapping>
+
 </web-app>

@@ -13,11 +13,11 @@
     <title>Mobile Store</title>
 
     <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="<c:url value="resources/css/bootstrap.min.css" />">
+    <link rel="stylesheet" href="<c:url value="../../resources/css/bootstrap.min.css" />">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
     <!-- Custom styles for this template -->
-    <link href="<c:url value="resources/css/style.css" />" rel="stylesheet">
-    <link href="<c:url value="resources/css/toastr.css" />" rel="stylesheet">
+    <link href="<c:url value="../../resources/css/style.css" />" rel="stylesheet">
+    <link href="<c:url value="../../resources/css/toastr.css" />" rel="stylesheet">
     <link rel="icon" type="image/png" href="resources/images/icon.png" sizes="16x16">
 
 </head>
@@ -27,13 +27,14 @@
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom fixed-top shadow-sm p-3 mb-5">
     <div class="container">
+        <a href="/" class="logo">Mobile Store</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="/flower-list">Home     </a>
+                    <a class="nav-link" href="/">Home     </a>
                 </li>
                 <li class="nav-item active">
                     <!--<a href="shopping-cart" class="list-group-item d-flex justify-content-between align-items-center">-->
