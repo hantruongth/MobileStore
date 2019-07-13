@@ -18,7 +18,8 @@ public class ProductListController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.setAttribute("products", productDAO.findAllProducts());
+        req.setAttribute("newProducts", productDAO.findAllProducts());
+        req.setAttribute("bestSeller", productDAO.findBestSellerProducts());
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("product.jsp");
         requestDispatcher.forward(req, resp);
     }

@@ -7,5 +7,6 @@ import java.util.Map;
 
 public interface ProductDAO {
     List<Product> findAllProducts();
+    List<Product> findBestSellerProducts();
 
 }

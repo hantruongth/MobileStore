@@ -12,4 +12,9 @@ public class ProductDAOImpl implements ProductDAO {
     public List<Product> findAllProducts() {
         return new ArrayList<>(MockData.productDB.values());
     }
+
+    @Override
+    public List<Product> findBestSellerProducts() {
+        return new ArrayList<>(MockData.productDB.values());
+    }
 }
