@@ -6,9 +6,9 @@
 <div id="productTitle"><h1>New Products</h1></div>
 <div class="rowitem">
     <c:forEach items="${newProducts}" var="product">
-      <c:url value='shopping-cart' var="linkAddToCart">
-        <c:param name="productId" value="${product.productId}"/>
-      </c:url>
+<%--      <c:url value='shopping-cart' var="linkAddToCart">--%>
+<%--        <c:param name="productId" value="${product.productId}"/>--%>
+<%--      </c:url>--%>
       <div class="col-lg-3 col-md-4 col-xs-6 item">
         <div class="card h-100">
           <a href="detail?id=${product.productId}"><img class="card-img-top" src="<c:url value="../../resources/images/${product.images[0].url}" />" alt=${product.briefInformation}></a>
@@ -20,7 +20,7 @@
             <p class="card-text">${product.briefInformation}</p>
           </div>
           <div class="card-footer text-center">
-            <a href="${linkAddToCart}" class="btn btn-primary btn-lg active addToCart" role="button" aria-pressed="true">Add to cart</a>
+            <a href="shopping-cart?id=${product.productId}" class="btn btn-primary btn-lg active addToCart" role="button" aria-pressed="true">Add to cart</a>
           </div>
         </div>
       </div>
@@ -30,9 +30,9 @@
 <div id="productTitle"><h1>Best Seller Products</h1></div>
 <div class="rowitem">
   <c:forEach items="${bestSeller}" var="product">
-    <c:url value='shopping-cart' var="linkAddToCart">
-      <c:param name="productId" value="${product.productId}"/>
-    </c:url>
+<%--    <c:url value='shopping-cart' var="linkAddToCart">--%>
+<%--      <c:param name="productId" value="${product.productId}"/>--%>
+<%--    </c:url>--%>
     <div class="col-lg-3 col-md-4 col-xs-6 item">
       <div class="card h-100">
         <a href="detail?id=${product.productId}"><img class="card-img-top" src="<c:url value="../../resources/images/${product.images[0].url}" />" alt=${product.briefInformation}></a>
@@ -44,7 +44,7 @@
           <p class="card-text">${product.briefInformation}</p>
         </div>
         <div class="card-footer text-center">
-          <a href="${linkAddToCart}" class="btn btn-primary btn-lg active addToCart" role="button" aria-pressed="true">Add to cart</a>
+          <a href="shopping-cart?id=${product.productId}" class="btn btn-primary btn-lg active addToCart" role="button" aria-pressed="true">Add to cart</a>
         </div>
       </div>
     </div>
