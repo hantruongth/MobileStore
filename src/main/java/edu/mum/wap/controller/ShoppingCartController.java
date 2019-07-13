@@ -2,6 +2,7 @@ package edu.mum.wap.controller;
 
 import edu.mum.wap.dao.ShoppingCartDAO;
 import edu.mum.wap.dao.impl.ShoppingCartDAOImpl;
+import edu.mum.wap.model.CartItem;
 import edu.mum.wap.model.ShoppingCart;
 
 import javax.servlet.RequestDispatcher;
@@ -11,6 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class ShoppingCartController extends HttpServlet {
 
@@ -48,5 +52,20 @@ public class ShoppingCartController extends HttpServlet {
         requestDispatcher.forward(req, resp);
     }
 
+    @Override
+    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        HttpSession session = req.getSession(true);
+        if (session != null && session.getAttribute("shoppingCart") != null) {
+            shoppingCart = (ShoppingCart) session.getAttribute("shoppingCart");
 
+            String ids = req.getParameter("ids");
+            List<Integer> productIds = Arrays.stream(ids.split(",")).filter(e->!e.isEmpty()).map(Integer::new).collect(Collectors.toList());
+
+            List<CartItem> cartItems = shoppingCart.getItems();
+            cartItems = cartItems.stream().filter(e->!productIds.contains(e.getItem().getProductId())).collect(Collectors.toList());
+            shoppingCart.setItems(cartItems);
+            shoppingCartDAO.setCart(shoppingCart);
+            session.setAttribute("shoppingCart", shoppingCartDAO.getCart());
+        }
+    }
 }

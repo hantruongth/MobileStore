@@ -30,6 +30,9 @@ $(function () {
         $.post(url).done(function (response) {
             $("#num-of-items").text(response);
             toastr["success"]('Product was added successfully! Please check the cart for details.');
+        }).fail(function () {
+            toastr["error"]('Error! Please contact Administrator');
+
         });
 
         return false;
@@ -41,13 +44,18 @@ $(function () {
 
     $('#btnRemove').click(function () {
 
-        var productIds = "";
+        let productIds = "";
         $('input[type=checkbox]').each(function () {
             if (this.checked) {
                 productIds += $(this).val() + ",";
             }
         });
-        alert(productIds)
+        let url = "shopping-cart?ids=" + productIds;
+        $.ajax({
+            url: url,
+            type: 'put',
+            success: location.reload()
+        });
 
     });
 
