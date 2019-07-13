@@ -36,6 +36,7 @@ $(function () {
             return false;
 
 
+
     $('#btnContinueShopping').click(function(){
         $(location).attr("href", "/");
     });
