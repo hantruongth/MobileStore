@@ -16,13 +16,15 @@ public class RequestLogFilter implements Filter {
         HttpSession session = req.getSession(false);
         HttpServletResponse resp = (HttpServletResponse) response;
 
-        if(req.getSession()!= null && req.getSession().getAttribute("user_info") != null){
-            chain.doFilter(request,response);
-        }
-        else{
-            ((HttpServletRequest) request).getSession().setAttribute("err_msg", "You need to log in first.");
-            resp.sendRedirect("login.jsp");
-        }
+        //TODO (TUYEN):
+//        if(req.getSession()!= null && req.getSession().getAttribute("user_info") != null){
+//            chain.doFilter(request,response);
+//        }
+//        else{
+//            ((HttpServletRequest) request).getSession().setAttribute("err_msg", "You need to log in first.");
+//            resp.sendRedirect("login.jsp");
+//        }
+        chain.doFilter(request,response);
     }
 
     @Override
