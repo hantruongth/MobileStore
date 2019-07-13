@@ -14,13 +14,14 @@ import java.io.IOException;
 public class ShoppingCartController extends HttpServlet {
 
     private ShoppingCartDAO shoppingCartDAO = new ShoppingCartDAOImpl();
-    private ShoppingCart shoppingCart = new ShoppingCart();
+    private ShoppingCart shoppingCart;
 
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession(true);
         if (session != null && session.getAttribute("shoppingCart") != null) {
             shoppingCart = (ShoppingCart) session.getAttribute("shoppingCart");
+            shoppingCartDAO.setCart(shoppingCart);
         } else {
             session.setAttribute("shoppingCart", shoppingCart);
         }
@@ -30,7 +31,11 @@ public class ShoppingCartController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-
+        Integer productId = Integer.parseInt(req.getParameter("id"));
+        shoppingCartDAO.addToCart(productId);
+        HttpSession session = req.getSession(true);
+        session.setAttribute("shoppingCart", shoppingCartDAO.getCart());
+        resp.getWriter().write(String.valueOf(shoppingCartDAO.getCart().getNumberOfItems()));
     }
 
 

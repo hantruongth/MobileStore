@@ -1,19 +1,18 @@
 package edu.mum.wap.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ShoppingCart {
 
     private List<CartItem> items;
-    private double totalPrice;
-    private int quantity;
 
     public ShoppingCart() {
+        items = new ArrayList<>();
     }
 
-    public ShoppingCart(List<CartItem> items, double totalPrice) {
+    public ShoppingCart(List<CartItem> items) {
         this.items = items;
-        this.totalPrice = totalPrice;
     }
 
     public List<CartItem> getItems() {
@@ -25,14 +24,12 @@ public class ShoppingCart {
     }
 
     public double getTotalPrice() {
-        return totalPrice;
+       return this.items.stream().mapToDouble(e->e.getPrice()).sum();
     }
 
-    public void setTotalPrice(double totalPrice) {
-        this.totalPrice = totalPrice;
-    }
-
-    public int getQuantity() {
+    public int getNumberOfItems() {
         return items.size();
     }
+
+
 }

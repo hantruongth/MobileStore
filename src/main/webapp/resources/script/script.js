@@ -25,4 +25,19 @@ $(function () {
             })
     }
 
+    $(function(){
+        $('.addToCart').click(function () {
+            let url = $(this).attr('href');
+            $.post(url).done(function(response){
+                $("#num-of-items").text(response);
+                toastr["success"]('Product was added successfully! Please check the cart for details.');
+            });
+
+            return false;
+        });
+
+
+
+    });
+
 })
