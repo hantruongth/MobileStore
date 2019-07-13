@@ -14,5 +14,7 @@
     <h1>THE MOBILE LIST DISPLAYS HERE</h1>
     <h1>Welcome ${user_info} </h1>
     <a href="logout">Log out</a>
+
+    <a href="register.jsp">Register User</a>
 </body>
 </html>
