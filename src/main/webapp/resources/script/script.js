@@ -5,7 +5,7 @@ $(function () {
     function register() {
         var user = {};
         user.userName = $("#username").val();
-        user.passWord = $("#password").val();
+        user.password = $("#password").val();
         user.fullName = $("#fullname").val();
         user.email = $("#email").val();
         user.phone = $("#phone").val();
@@ -27,17 +27,17 @@ $(function () {
 
     $(function(){
         $('.addToCart').click(function () {
-            let url = $(this).attr('href');
+            var url = $(this).attr('href');
             $.post(url).done(function(response){
                 $("#num-of-items").text(response);
                 toastr["success"]('Product was added successfully! Please check the cart for details.');
             });
 
             return false;
-        });
 
 
-
+    $('#btnContinueShopping').click(function(){
+        $(location).attr("href", "/");
     });
 
 })

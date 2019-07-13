@@ -8,7 +8,7 @@
 
 <!--  <filter>-->
 <!--    <filter-name>LogFilter</filter-name>-->
-<!--    <filter-class>edu.mum.wap.controller.RequestLogFilter</filter-class>-->
+<!--    <filter-class>edu.mum.wap.filter.RequestLogFilter</filter-class>-->
 <!--  </filter>-->
 <!--  <filter-mapping>-->
 <!--    <filter-name>LogFilter</filter-name>-->
@@ -27,7 +27,7 @@
 
   <servlet>
     <servlet-name>Register</servlet-name>
-    <servlet-class>edu.mum.wap.controller.RegisterServlet</servlet-class>
+    <servlet-class>edu.mum.wap.controller.RegisterController</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>Register</servlet-name>
@@ -36,7 +36,7 @@
 
   <servlet>
   <servlet-name>Login</servlet-name>
-  <servlet-class>edu.mum.wap.controller.LoginServlet</servlet-class>
+  <servlet-class>edu.mum.wap.controller.LoginController</servlet-class>
 
     <servlet-name>ShoppingCart</servlet-name>
     <servlet-class>edu.mum.wap.controller.ShoppingCartController</servlet-class>
@@ -48,7 +48,7 @@
 
   <servlet>
     <servlet-name>Login</servlet-name>
-    <servlet-class>edu.mum.wap.controller.LoginServlet</servlet-class>
+    <servlet-class>edu.mum.wap.controller.LoginController</servlet-class>
 
   </servlet>
   <servlet-mapping>
@@ -59,7 +59,7 @@
 
   <servlet>
   <servlet-name>Logout</servlet-name>
-  <servlet-class>edu.mum.wap.controller.LogoutServlet</servlet-class>
+  <servlet-class>edu.mum.wap.controller.LogoutController</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>Logout</servlet-name>
@@ -68,7 +68,7 @@
 
   <servlet>
     <servlet-name>Profile</servlet-name>
-    <servlet-class>edu.mum.wap.controller.ProfileServlet</servlet-class>
+    <servlet-class>edu.mum.wap.controller.ProfileController</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>Profile</servlet-name>

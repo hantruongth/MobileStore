@@ -1,6 +1,5 @@
 package edu.mum.wap.controller;
 
-import com.google.gson.Gson;
 import edu.mum.wap.dao.UserDAO;
 
 import javax.servlet.ServletException;
@@ -10,11 +9,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class LoginServlet extends HttpServlet {
+public class LoginController extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
 
-    public LoginServlet() {
+    public LoginController() {
 
     }
 
@@ -69,7 +68,7 @@ public class LoginServlet extends HttpServlet {
                 resp.addCookie(cookiePassword);
             }
             //NEED TO DO
-            resp.sendRedirect("mobiles.jsp");//To be modified to mobile list
+            resp.sendRedirect("product.jsp");//To be modified to mobile list
 
         }
         else{

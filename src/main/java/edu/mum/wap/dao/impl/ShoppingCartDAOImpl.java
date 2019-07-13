@@ -6,6 +6,8 @@ import edu.mum.wap.model.CartItem;
 import edu.mum.wap.model.Product;
 import edu.mum.wap.model.ShoppingCart;
 
+import java.util.List;
+
 public class ShoppingCartDAOImpl implements ShoppingCartDAO {
 
     private ProductDAO productDAO = new ProductDAOImpl();
@@ -16,7 +18,17 @@ public class ShoppingCartDAOImpl implements ShoppingCartDAO {
     public void addToCart(int id) {
 
         Product item = productDAO.getProductDB().get(id);
-        shoppingCart.getItems().add(new CartItem(item, item.getPrice(), 1));
+        List<CartItem> cartItems = shoppingCart.getItems();
+        boolean addDuplicatedItem = false;
+
+        for (CartItem e : cartItems) {
+            if (e.getItem() == item) {
+                e.setQuantity(e.getQuantity() + 1);
+                addDuplicatedItem = true;
+            }
+        }
+        if (!addDuplicatedItem)
+            shoppingCart.getItems().add(new CartItem(item, item.getPrice(), 1));
     }
 
     @Override
@@ -25,13 +37,13 @@ public class ShoppingCartDAOImpl implements ShoppingCartDAO {
     }
 
     @Override
-    public void setCart(ShoppingCart cart) {
-        this.shoppingCart = cart;
-    }
-
-    @Override
     public ShoppingCart getCart() {
         return this.shoppingCart;
 
+    }
+
+    @Override
+    public void setCart(ShoppingCart cart) {
+        this.shoppingCart = cart;
     }
 }
