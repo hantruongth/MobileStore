@@ -4,6 +4,7 @@ import edu.mum.wap.dao.ShoppingCartDAO;
 import edu.mum.wap.dao.impl.ShoppingCartDAOImpl;
 import edu.mum.wap.model.ShoppingCart;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -36,6 +37,15 @@ public class ShoppingCartController extends HttpServlet {
         HttpSession session = req.getSession(true);
         session.setAttribute("shoppingCart", shoppingCartDAO.getCart());
         resp.getWriter().write(String.valueOf(shoppingCartDAO.getCart().getNumberOfItems()));
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        RequestDispatcher requestDispatcher = req.getRequestDispatcher("shopping-cart.jsp");
+        req.setAttribute("cartItems", shoppingCartDAO.getCart().getItems());
+        req.setAttribute("totalPrice", shoppingCartDAO.getCart().getTotalPrice());
+        requestDispatcher.forward(req, resp);
     }
 
 
