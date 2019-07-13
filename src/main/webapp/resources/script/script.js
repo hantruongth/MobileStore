@@ -10,7 +10,7 @@ $(function () {
         user.email = $("#email").val();
         user.phone = $("#phone").val();
         user.address = $("#address").val();
-        alert(user.password);
+
         $.post("", {"userNew": JSON.stringify(user)})
             .done(function (data) {
                 var resp = JSON.parse(data);
@@ -25,20 +25,30 @@ $(function () {
             })
     }
 
-    // $(function(){
-    //     $('.addToCart').click(function () {
-    //         var url = $(this).attr('href');
-    //         $.post(url).done(function (response) {
-    //             $("#num-of-items").text(response);
-    //             toastr["success"]('Product was added successfully! Please check the cart for details.');
-    //         });
-    //
-    //         return false;
-    //
-    //     }
-    //         $('#btnContinueShopping').click(function () {
-    //             $(location).attr("href", "/");
-    //         });
-    // }
+    $('.addToCart').click(function () {
+        var url = $(this).attr('href');
+        $.post(url).done(function (response) {
+            $("#num-of-items").text(response);
+            toastr["success"]('Product was added successfully! Please check the cart for details.');
+        });
+
+        return false;
+    });
+
+    $('#btnContinueShopping').click(function () {
+        $(location).attr("href", "/");
+    });
+
+    $('#btnRemove').click(function () {
+
+        var productIds = "";
+        $('input[type=checkbox]').each(function () {
+            if (this.checked) {
+                productIds += $(this).val() + ",";
+            }
+        });
+        alert(productIds)
+
+    });
 
 })
