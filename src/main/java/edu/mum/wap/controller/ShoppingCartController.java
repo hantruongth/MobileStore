@@ -4,6 +4,7 @@ import edu.mum.wap.dao.ShoppingCartDAO;
 import edu.mum.wap.dao.impl.ShoppingCartDAOImpl;
 import edu.mum.wap.model.ShoppingCart;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -14,13 +15,14 @@ import java.io.IOException;
 public class ShoppingCartController extends HttpServlet {
 
     private ShoppingCartDAO shoppingCartDAO = new ShoppingCartDAOImpl();
-    private ShoppingCart shoppingCart = new ShoppingCart();
+    private ShoppingCart shoppingCart;
 
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession(true);
         if (session != null && session.getAttribute("shoppingCart") != null) {
             shoppingCart = (ShoppingCart) session.getAttribute("shoppingCart");
+            shoppingCartDAO.setCart(shoppingCart);
         } else {
             session.setAttribute("shoppingCart", shoppingCart);
         }
@@ -30,7 +32,20 @@ public class ShoppingCartController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+        Integer productId = Integer.parseInt(req.getParameter("id"));
+        shoppingCartDAO.addToCart(productId);
+        HttpSession session = req.getSession(true);
+        session.setAttribute("shoppingCart", shoppingCartDAO.getCart());
+        resp.getWriter().write(String.valueOf(shoppingCartDAO.getCart().getNumberOfItems()));
+    }
 
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        RequestDispatcher requestDispatcher = req.getRequestDispatcher("shopping-cart.jsp");
+        req.setAttribute("cartItems", shoppingCartDAO.getCart().getItems());
+        req.setAttribute("totalPrice", shoppingCartDAO.getCart().getTotalPrice());
+        requestDispatcher.forward(req, resp);
     }
 
 

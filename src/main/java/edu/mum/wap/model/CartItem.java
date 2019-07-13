@@ -3,7 +3,6 @@ package edu.mum.wap.model;
 public class CartItem {
 
     private Product item;
-    private double price;
     private int quantity;
 
     public CartItem() {
@@ -11,7 +10,6 @@ public class CartItem {
 
     public CartItem(Product item, double price, int quantity) {
         this.item = item;
-        this.price = price;
         this.quantity = quantity;
     }
 
@@ -24,11 +22,7 @@ public class CartItem {
     }
 
     public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
+        return this.item.getPrice() * this.quantity;
     }
 
     public int getQuantity() {
