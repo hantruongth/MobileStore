@@ -29,11 +29,13 @@ public class RegisterController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+
         User user = mapper.fromJson(req.getParameter("userNew"), User.class);
 
         UserDAO userDAO = (UserDAO)getServletContext().getAttribute("userDAO");
 
-        if (userDAO.addUser(user.getUserName(), user.getPassword(), user.getFullName(), user.getEmail(), user.getAddress(), user.getPhone())) {
+        String password = user.getPassword();
+        if (userDAO.addUser(user.getUserName(), password, user.getFullName(), user.getEmail(), user.getAddress(), user.getPhone())) {
             Cookie cookieUsername = new Cookie("username", user.getUserName());
             cookieUsername.setMaxAge(3600);
             Cookie cookiePassword = new Cookie("password", user.getPassword());
