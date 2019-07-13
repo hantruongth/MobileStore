@@ -28,7 +28,6 @@ public class LoginServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        //req.getRequestDispatcher("logintemp.jsp").forward(req,resp);
 
         String username = "";
         String password = "";
@@ -56,7 +55,6 @@ public class LoginServlet extends HttpServlet {
         String remember = req.getParameter("remember");
         if(userDAO.checkExistUser(username, password)){
             req.getSession().setAttribute("user_info" , username);
-            //if(req.getParameter("remember") != null && req.getParameter("remember").equals("yes")){
             if("yes".equals(remember)){
                 Cookie cookieUsername = new Cookie("username", username);
                 cookieUsername.setMaxAge(3600);
@@ -67,19 +65,20 @@ public class LoginServlet extends HttpServlet {
             }
             else{
                 Cookie cookieUsername = new Cookie("username", null);
-                cookieUsername.setMaxAge(0);
+                cookieUsername.setMaxAge(-1);
                 Cookie cookiePassword = new Cookie("password", null);
-                cookiePassword.setMaxAge(0);
+                cookiePassword.setMaxAge(-1);
                 resp.addCookie(cookieUsername);
                 resp.addCookie(cookiePassword);
             }
             //NEED TO DO
             resp.sendRedirect("mobiles.jsp");//To be modified to mobile list
 
-        }else{
+        }
+        else{
             req.setAttribute("err_msg", "Incorrect username or password");
             req.getRequestDispatcher("login.jsp").forward(req,resp);
         }
 
-        }
+    }
 }
