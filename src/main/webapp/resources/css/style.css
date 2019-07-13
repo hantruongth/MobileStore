@@ -1,3 +1,38 @@
 body {
     padding-top: 70px;
 }
+.logo, .logo:hover, .logo:link {
+    font-size: 20pt;
+    font-weight: bold;
+    text-decoration: none;
+    color: #63bbd0;
+}
+footer{
+    padding-top: 1rem !important;
+    padding-bottom: 1rem !important;
+    background-color: #63bbd0 !important;
+}
+.rowitem{
+    width: 1000px;
+    margin: auto;
+    display: flex;
+
+}
+div.item {
+    margin-bottom: 15px !important;
+}
+.h-100 {
+    height: 100% !important;
+}
+div.card > a > img {
+    height: 100% !important;
+    width: 100% !important;
+}
+#productTitle{
+    width: 1000px;
+    margin: auto;
+    margin-top: 20px;
+    padding: 15px;
+    color: red;
+
+}
