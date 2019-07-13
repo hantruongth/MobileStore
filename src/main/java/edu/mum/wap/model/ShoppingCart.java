@@ -28,7 +28,12 @@ public class ShoppingCart {
     }
 
     public int getNumberOfItems() {
-        return items.size();
+        int numberOfItems = 0;
+        for (CartItem cartItem: items){
+            numberOfItems += cartItem.getQuantity();
+        }
+        return numberOfItems;
+
     }
 
 
