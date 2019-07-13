@@ -4,19 +4,15 @@ import com.google.gson.Gson;
 import edu.mum.wap.dao.UserDAO;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet({"/login", ""})
 public class LoginServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
-    private UserDAO userDAO;
-    //Gson mapper = new Gson();
 
     public LoginServlet() {
 
@@ -24,7 +20,6 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     public void init() throws ServletException {
-        userDAO = new UserDAO();
     }
 
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -53,6 +48,8 @@ public class LoginServlet extends HttpServlet {
         String username = req.getParameter("username");
         String password = req.getParameter("password");
         String remember = req.getParameter("remember");
+        UserDAO userDAO = (UserDAO)getServletContext().getAttribute("userDAO");
+
         if(userDAO.checkExistUser(username, password)){
             req.getSession().setAttribute("user_info" , username);
             if("yes".equals(remember)){

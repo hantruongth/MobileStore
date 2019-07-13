@@ -6,8 +6,8 @@ $(function () {
         var user = {};
         user.userName = $("#username").val();
         user.passWord = $("#password").val();
-        user.email = $("#email").val();
         user.fullName = $("#fullname").val();
+        user.email = $("#email").val();
         user.phone = $("#phone").val();
         user.address = $("#address").val();
 
