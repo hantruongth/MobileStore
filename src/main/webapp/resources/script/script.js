@@ -63,10 +63,13 @@ $(function () {
                 type: 'put',
                 async: false,
                 data: JSON.stringify(product),
-                success: location.reload(),
+                success: reloadPage,
                 contentType: 'json'
             });
         }
     });
+    function reloadPage(){
+        location.reload();
+    }
 
 })

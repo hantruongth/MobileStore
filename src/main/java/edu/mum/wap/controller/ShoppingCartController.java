@@ -77,5 +77,6 @@ public class ShoppingCartController extends HttpServlet {
         HttpSession session = req.getSession(true);
         shoppingCartDAO.setCart(shoppingCart);
         session.setAttribute("shoppingCart", shoppingCartDAO.getCart());
+
     }
 }
