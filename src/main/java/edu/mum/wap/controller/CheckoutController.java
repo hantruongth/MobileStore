@@ -41,16 +41,6 @@ public class CheckoutController extends HttpServlet {
 
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        HttpSession session = req.getSession(true);
-//        if (session != null && session.getAttribute("shoppingCartDao") != null) {
-//            shoppingCartDao = (ShoppingCartDAO) session.getAttribute("shoppingCartDao");
-//        } else {
-//            shoppingCartDao = new ShoppingCartDAOI();
-//            session.setAttribute("shoppingCartDao", shoppingCartDao);
-//        }
-//
-//        db = (UserDao)getServletContext().getAttribute("userDb");
-//        super.service(req, resp);
 
         HttpSession session = req.getSession(true);
         if(session != null && session.getAttribute("shoppingCart") != null) {
@@ -64,22 +54,6 @@ public class CheckoutController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-//        if (request.getParameter("order") != null) {
-//            Order order = mapper.readValue(request.getParameter("order"), Order.class);
-//            HttpSession session = request.getSession();
-//            String email = (String)session.getAttribute("username");
-//            User user = db.getUserByUsername(email);
-//            order.setUserId(user.getId());
-//            List<OrderItem> items = new ArrayList<>();
-//            // build the item list
-//            for (CartFlower cart: shoppingCartDao.getMyCart()) {
-//                OrderItem item = new OrderItem(UUID.randomUUID().toString(),cart.getQty(), cart.getFlower());
-//                items.add(item);
-//            }
-//            order.setOrderItems(items);
-//            request.getSession().setAttribute("shoppingCartDao", null);
-//        }
 
         if(req.getParameter("order") != null){
             Order order = mapper.fromJson(req.getParameter("order"), Order.class);
