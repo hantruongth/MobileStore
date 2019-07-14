@@ -7,6 +7,7 @@
 </c:if>
 
 <div class="container">
+    <div id="productTitle"><h1>Profile</h1></div>
     <div class="row shopping-cart">
         <table class="table table-bordered table-striped">
             <thead>
