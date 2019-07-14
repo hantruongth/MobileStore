@@ -21,13 +21,13 @@ public class ShoppingCartDAOImpl implements ShoppingCartDAO {
         List<CartItem> cartItems = shoppingCart.getItems();
         boolean addDuplicatedItem = false;
 
-        for (CartItem e : cartItems) {
-            if (e.getItem() == item) {
+        for(CartItem e: cartItems){
+            if(e.getItem() == item) {
                 e.setQuantity(e.getQuantity() + 1);
                 addDuplicatedItem = true;
             }
         }
-        if (!addDuplicatedItem)
+        if(!addDuplicatedItem)
             shoppingCart.getItems().add(new CartItem(item, item.getPrice(), 1));
     }
 
@@ -37,13 +37,16 @@ public class ShoppingCartDAOImpl implements ShoppingCartDAO {
     }
 
     @Override
-    public ShoppingCart getCart() {
-        return this.shoppingCart;
-
+    public void setCart(ShoppingCart cart) {
+        if(cart != null)
+            this.shoppingCart = cart;
+        else
+            this.shoppingCart = new ShoppingCart();
     }
 
     @Override
-    public void setCart(ShoppingCart cart) {
-        this.shoppingCart = cart;
+    public ShoppingCart getCart() {
+        return this.shoppingCart;
+
     }
 }

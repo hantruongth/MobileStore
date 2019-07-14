@@ -58,14 +58,20 @@ $(function () {
         });
         let url = "shopping-cart?ids=" + productIds + "&action=" + action;
 
-        $.ajax({
-            url: url,
-            type: 'put',
-            data: JSON.stringify(product),
-            success: location.reload(),
-            contentType: 'json'
-        });
+        if(productIds !== "") {
+            $.ajax({
+                url: url,
+                type: 'put',
+                async: false,
+                data: JSON.stringify(product),
+                success: reloadPage,
+                contentType: 'json'
+            });
+        }
     });
+    function reloadPage(){
+        location.reload();
+    }
 
     $("#btnCheckout").click(()=>{
         console.log("checkout click");
