@@ -1,5 +1,6 @@
 package edu.mum.wap.controller;
 
+import com.google.gson.Gson;
 import edu.mum.wap.dao.ShoppingCartDAO;
 import edu.mum.wap.dao.impl.ShoppingCartDAOImpl;
 import edu.mum.wap.model.CartItem;
@@ -13,7 +14,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class ShoppingCartController extends HttpServlet {
@@ -59,11 +62,22 @@ public class ShoppingCartController extends HttpServlet {
             shoppingCart = (ShoppingCart) session.getAttribute("shoppingCart");
 
             String ids = req.getParameter("ids");
+            String action = req.getParameter("action");
+            Map<String, String> mapProductIdQuantity = (Map<String, String>)new Gson().fromJson(req.getReader(), Object.class);
+
             List<Integer> productIds = Arrays.stream(ids.split(",")).filter(e->!e.isEmpty()).map(Integer::new).collect(Collectors.toList());
 
             List<CartItem> cartItems = shoppingCart.getItems();
-            cartItems = cartItems.stream().filter(e->!productIds.contains(e.getItem().getProductId())).collect(Collectors.toList());
-            shoppingCart.setItems(cartItems);
+
+            if("remove".equals(action)) {
+                cartItems = cartItems.stream().filter(e -> !productIds.contains(e.getItem().getProductId())).collect(Collectors.toList());
+                shoppingCart.setItems(cartItems);
+            }else if("update".equals(action)){
+                cartItems.stream().filter(e->productIds.contains(e.getItem().getProductId())).forEach(e-> {
+                    Integer newQuantity = Integer.valueOf(mapProductIdQuantity.get(String.valueOf(e.getItem().getProductId())));
+                    e.setQuantity(newQuantity);
+                });
+            }
             shoppingCartDAO.setCart(shoppingCart);
             session.setAttribute("shoppingCart", shoppingCartDAO.getCart());
         }

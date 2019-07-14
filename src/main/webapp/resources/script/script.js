@@ -17,8 +17,7 @@ $(function () {
                 if (resp.userName === "") {
                     toastr["error"]("This username is exists.");
                     $("#password").val("");
-                }
-                else {
+                } else {
                     $(location).attr("href", "/profile");
                     toastr["success"](resp.userName + " is created!");
                 }
@@ -42,21 +41,29 @@ $(function () {
         $(location).attr("href", "/");
     });
 
-    $('#btnRemove').click(function () {
+    $('#btnRemove, #btnUpdate').click(function () {
 
+        let action = $(this).val();
         let productIds = "";
+        let product = {};
+        let data = {"product": product};
         $('input[type=checkbox]').each(function () {
             if (this.checked) {
-                productIds += $(this).val() + ",";
+                let productId = $(this).val();
+                productIds += productId + ",";
+                product[""+productId] = $("#quantity_"+productId).val();
+
             }
         });
-        let url = "shopping-cart?ids=" + productIds;
+        let url = "shopping-cart?ids=" + productIds + "&action=" + action;
+
         $.ajax({
             url: url,
             type: 'put',
-            success: location.reload()
+            data: JSON.stringify(product),
+            success: location.reload(),
+            contentType: 'json'
         });
-
     });
 
 })
