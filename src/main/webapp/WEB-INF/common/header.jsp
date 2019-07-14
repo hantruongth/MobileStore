@@ -45,7 +45,7 @@
                     </span>
                     </a>
                 </li>
-                <c:if test="${username_label == null}">
+                <c:if test="${user_info == null}">
                     <li class="nav-item active">
                         <a class="nav-link" href="login">Login</a>
                     </li>
@@ -53,9 +53,9 @@
                         <a class="nav-link" href="register">Register</a>
                     </li>
                 </c:if>
-                <c:if test="${username_label != null}">
+                <c:if test="${user_info != null}">
                     <li class="nav-item active">
-                        <a class="nav-link" href="profile">${username_label}</a>
+                        <a class="nav-link" href="profile">${user_info}</a>
                     </li>
                     <li class="nav-item active">
                         <a class="nav-link" href="logout">Logout</a>

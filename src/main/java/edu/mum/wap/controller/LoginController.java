@@ -67,8 +67,7 @@ public class LoginController extends HttpServlet {
                 resp.addCookie(cookieUsername);
                 resp.addCookie(cookiePassword);
             }
-            //NEED TO DO
-            resp.sendRedirect("product.jsp");//To be modified to mobile list
+            resp.sendRedirect("/");
 
         }
         else{
