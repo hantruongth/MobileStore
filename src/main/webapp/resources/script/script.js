@@ -1,3 +1,4 @@
+
 $(function () {
 
     $("#btnRegister").click(register);
@@ -65,5 +66,18 @@ $(function () {
             contentType: 'json'
         });
     });
+
+    $("#btnCheckout").click(()=>{
+        console.log("checkout click");
+        if ($(".item").length > 0) {
+            $(location).attr("href", "checkout");
+            $("#num-of-items").text(0);
+        } else {
+            $("#alertBody").html("Please add item in your cart before doing checkout.")
+            $("#myModal").modal("show");
+        }
+    });
+
+
 
 })
