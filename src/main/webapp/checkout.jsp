@@ -16,6 +16,7 @@
 
 <c:if test="${user_info != null}">
     <div class="container">
+        <div id="productTitle"><h1>Checkout</h1></div>
         <div class="row shopping-cart">
             <form class="payment-form">
                 <div class="form-group row">
