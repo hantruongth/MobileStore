@@ -23,4 +23,9 @@ public class ProductDAOImpl implements ProductDAO {
     public Map<Integer, Product> getProductDB() {
         return MockData.productDB;
     }
+
+    @Override
+    public Product getProductDetailsById(int id) {
+        return MockData.productDB.get(id);
+    }
 }
