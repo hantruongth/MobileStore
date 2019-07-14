@@ -79,4 +79,13 @@
         <url-pattern>/productdetails</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>Checkout</servlet-name>
+        <servlet-class>edu.mum.wap.controller.CheckoutController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Checkout</servlet-name>
+        <url-pattern>/checkout</url-pattern>
+    </servlet-mapping>
+
 </web-app>
