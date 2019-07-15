@@ -6,16 +6,6 @@
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
 
-    <!--  <filter>-->
-    <!--    <filter-name>LogFilter</filter-name>-->
-    <!--    <filter-class>edu.mum.wap.filter.RequestLogFilter</filter-class>-->
-    <!--  </filter>-->
-    <!--  <filter-mapping>-->
-    <!--    <filter-name>LogFilter</filter-name>-->
-    <!--    <url-pattern>/logout</url-pattern>-->
-    <!--    <url-pattern>/welcome.jsp</url-pattern>-->
-    <!--  </filter-mapping>-->
-
     <servlet>
         <servlet-name>Product</servlet-name>
         <servlet-class>edu.mum.wap.controller.ProductListController</servlet-class>
